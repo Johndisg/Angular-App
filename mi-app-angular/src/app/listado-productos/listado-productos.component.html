@@ -1,0 +1,42 @@
+<h2>Listado de productos</h2>
+
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+  <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+
+  <!-- Position Column -->
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef> ID. </th>
+    <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+  </ng-container>
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="nombre">
+    <th mat-header-cell *matHeaderCellDef> Nombre producto </th>
+    <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
+  </ng-container>
+
+  <!-- Weight Column -->
+  <ng-container matColumnDef="descripcion">
+    <th mat-header-cell *matHeaderCellDef> Descripción </th>
+    <td mat-cell *matCellDef="let element"> {{element.descripcion}} </td>
+  </ng-container>
+
+  <!-- Symbol Column -->
+  <ng-container matColumnDef="precio">
+    <th mat-header-cell *matHeaderCellDef> Precio </th>
+    <td mat-cell *matCellDef="let element"> {{element.precio}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="img">
+    <th mat-header-cell *matHeaderCellDef> Imagen </th>
+    <td mat-cell *matCellDef="let element">
+      <img [src]="ruta_imagen+element.imagen" class="img-producto">
+      <!-- http://localhost:3000/uploads/324324.png -->
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>

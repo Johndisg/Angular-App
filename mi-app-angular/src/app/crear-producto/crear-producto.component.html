@@ -1,0 +1,61 @@
+<h2>Crear producto</h2>
+
+<form [formGroup]="formProducto" (ngSubmit)="guardarProducto()">
+    <div>
+        <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Nombre producto</mat-label>
+            <input matInput formControlName="nombre">
+        </mat-form-field>
+        @if(controls['nombre'].invalid && controls['nombre'].errors && (controls['nombre'].dirty ||
+        controls['nombre'].touched)){
+        <div class="text-danger">
+            El nombre es requerido
+        </div>
+        }
+    </div>
+    <div>
+        <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Descripción producto</mat-label>
+            <textarea matInput formControlName="descripcion"></textarea>
+        </mat-form-field>
+        @if(controls['descripcion'].invalid && controls['descripcion'].errors && (controls['descripcion'].dirty ||
+        controls['descripcion'].touched)){
+        <div class="text-danger">
+            La descripción es requerida
+        </div>
+        }
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Precio</mat-label>
+                <input matInput formControlName="precio">
+            </mat-form-field>
+            @if(controls['precio'].invalid && controls['precio'].errors && (controls['precio'].dirty ||
+            controls['precio'].touched)){
+            <div class="text-danger">
+
+                @if(controls['precio'].errors['required']){
+                El precio es requerido
+                }
+
+                @if(controls['precio'].errors['min']){
+                El precio debe ser mayor a 0
+                }
+            </div>
+
+            }
+
+        </div>
+
+        <div class="col-md-6">
+            <input type="file" name="imagen" id="imagen" (change)="archivoSeleccionado($event)">
+        </div>
+    </div>
+
+    <div class="text-center">
+        <button mat-flat-button color="primary">Guardar</button>
+
+    </div>
+</form>
